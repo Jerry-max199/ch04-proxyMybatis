@@ -4,6 +4,7 @@ import com.zzjm.domain.Student;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 public interface StudentDao {
     /**
@@ -22,7 +23,7 @@ public interface StudentDao {
      *  mybatis.3.4之前，使用#{0}，#{1}
      *  mybatis.3.4之后使用#{arg0}，#{arg1}
      */
-
     List<Student> selectStudentIndex(String name,String email);
+    List<Student> selectStudentMap(Map<String,Object> map);
 
 }
