@@ -20,4 +20,13 @@ public class MyTest {
         Student student=studentDao.selectStudent(1001);
         System.out.println(student);
     }
+    @Test
+    public void selectMultiParamTest(){
+        SqlSession sqlSession=MyUtils.getSqlsession();
+        StudentDao studentDao=sqlSession.getMapper(StudentDao.class);
+       List<Student> studentList= studentDao.selectMulitParam("盾山",20);
+       for (Student student:studentList){
+           System.out.println("学生"+student);
+       }
+    }
 }

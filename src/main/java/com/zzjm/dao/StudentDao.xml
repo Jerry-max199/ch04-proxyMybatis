@@ -4,14 +4,35 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zzjm.dao.StudentDao">
 <!--
-parameterType:dao接口中方法参数的数据类型
-parameterType他的值是Java数据类型全限定名称获知mybatis定义的别名
-例如：paramateType=“java.lang.Integer”
-       parameterType=“int”
-注意：parameterType不是强制的，mybatis通过反射机制能够发现接口参数的数据类型
-所以可以没有，一般我么也不写。
+        parameterType:dao接口中方法参数的数据类型
+        parameterType他的值是Java数据类型全限定名称获知mybatis定义的别名
+        例如：paramateType=“java.lang.Integer”
+              parameterType=“int”
+        注意：parameterType不是强制的，mybatis通过反射机制能够发现接口参数的数据类型
+        所以可以没有，一般我么也不写。
+        使用#{}之后，mybais执行sql语句是使用sql的jdbc中的PreparedStatement对象
+        有mybatis执行下面代码：
+        1.mybatis创建Connect，PreparedStatement对象
+        String sql=“select id,name,age from student where id=?”
+        PreparedStatement pst=conn.PreparedStatement(sql)
+        pst.setInt(1,1001);
+        2.执行sql封装为resultType="com.com.zzjm.domain.Student"这个对象
+        ResultSet rs=ps.executeQuery();
+        Student student=null;
+        while(rs.next){
+        student =new  Student();
+        student.setId(rs.getInt("id"));
+        student.setName(rs.getSreing("name"));
+        student.setEmail(rs.getString("email"));
+        student.setAge(rs.getInt("age"));
+        return student;
+        }
 -->
     <select id="selectStudent" parameterType="int" resultType="com.zzjm.domain.Student">
         select * from Student where id=#{id}
+    </select>
+    <!--多个参数，使用@Param命名-->
+    <select id="selectMulitParam" resultType="com.zzjm.domain.Student">
+        select * from Student where name=#{myname} or age=#{myage}
     </select>
 </mapper>
