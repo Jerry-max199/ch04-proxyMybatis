@@ -15,4 +15,6 @@ public interface StudentDao {
     Student selectStudent(Integer id);
     //多个参数：命名空间，在形参定义前面加入@Param（“自定义参数名称”）
     List<Student> selectMulitParam(@Param("myname") String name,@Param("myage") Integer age);
+    //
+    List<Student> selectStudentObject(Student student);
 }

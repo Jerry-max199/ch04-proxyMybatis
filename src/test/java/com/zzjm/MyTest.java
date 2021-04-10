@@ -15,18 +15,35 @@ public class MyTest {
          * 使用mybatis的动态代理机制，使用sqlSession.getMapper(Dao接口)
          * getMapper能够获取dao接口对于实现类的对象。
          */
-        SqlSession sqlSession=MyUtils.getSqlsession();
-        StudentDao studentDao=sqlSession.getMapper(StudentDao.class);
-        Student student=studentDao.selectStudent(1001);
+        SqlSession sqlSession = MyUtils.getSqlsession();
+        StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+        Student student = studentDao.selectStudent(1001);
         System.out.println(student);
+        sqlSession.close();
     }
+
     @Test
-    public void selectMultiParamTest(){
-        SqlSession sqlSession=MyUtils.getSqlsession();
-        StudentDao studentDao=sqlSession.getMapper(StudentDao.class);
-       List<Student> studentList= studentDao.selectMulitParam("盾山",20);
-       for (Student student:studentList){
-           System.out.println("学生"+student);
-       }
+    public void selectMultiParamTest() {
+        SqlSession sqlSession = MyUtils.getSqlsession();
+        StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+        List<Student> studentList = studentDao.selectMulitParam("盾山", 20);
+        for (Student student : studentList) {
+            System.out.println("学生" + student);
+        }
+        sqlSession.close();
     }
+
+    @Test
+
+    public void selectStudentObjectTest() {
+    SqlSession sqlSession = MyUtils.getSqlsession();
+    StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+    Student student = new Student();
+    student.setName("张三");
+    student.setId(1001);
+    List<Student> studentList=studentDao.selectStudentObject(student);
+    for (Student student1:studentList){
+        System.out.println("学生"+student1);
+    }
+}
 }
