@@ -15,6 +15,14 @@ public interface StudentDao {
     Student selectStudent(Integer id);
     //多个参数：命名空间，在形参定义前面加入@Param（“自定义参数名称”）
     List<Student> selectMulitParam(@Param("myname") String name,@Param("myage") Integer age);
-    //
+    //多个参数，使用java对象作为方法的参数
     List<Student> selectStudentObject(Student student);
+    /**
+     *  多个参数，按位置传参
+     *  mybatis.3.4之前，使用#{0}，#{1}
+     *  mybatis.3.4之后使用#{arg0}，#{arg1}
+     */
+
+    List<Student> selectStudentIndex(String name,String email);
+
 }

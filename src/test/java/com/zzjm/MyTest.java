@@ -46,4 +46,13 @@ public class MyTest {
         System.out.println("学生"+student1);
     }
 }
+    @Test
+    public void selectStudentIndexTest(){
+        SqlSession sqlSession=MyUtils.getSqlsession();
+        StudentDao studentDao=sqlSession.getMapper(StudentDao.class);
+        List<Student> studentList=studentDao.selectStudentIndex("盾山","dunshan.com");
+        for (Student student:studentList){
+            System.out.println(student);
+        }
+    }
 }

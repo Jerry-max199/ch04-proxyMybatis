@@ -35,8 +35,18 @@
     <select id="selectMulitParam" resultType="com.zzjm.domain.Student">
         select * from Student where name=#{myname} or age=#{myage}
     </select>
-    <!--使用对象类型传参数-->
+    <!--多个参数，使用对象类型传参数
+    使用对象语法：#{属性名，javaType=类型名称，jdbcType=数据类型}很少用。
+                javaType：指java中的属性数据类型
+                jdbcType：指数据库中数据类型
+                例如：#{name，javaType=java.lang.String,jdbcType=VARCHAR}
+           我们使用简化方式：#{属性名}，javaType的值和jdbcType的值可以通过反射获取
+    -->
     <select id="selectStudentObject" resultType="com.zzjm.domain.Student">
         select * from Student where name=#{name} and id=#{id}
+    </select>
+    <!--多个参数按位置传递参数-->
+    <select id="selectStudentIndex" resultType="com.zzjm.domain.Student">
+        select * from Student where name=#{arg0} and email=#{arg1}
     </select>
 </mapper>

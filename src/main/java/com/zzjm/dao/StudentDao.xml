@@ -45,4 +45,8 @@
     <select id="selectStudentObject" resultType="com.zzjm.domain.Student">
         select * from Student where name=#{name} and id=#{id}
     </select>
+    <!--多个参数按位置传递参数-->
+    <select id="selectStudentIndex" resultType="com.zzjm.domain.Student">
+        select * from Student where name=#{arg0} and email=#{arg1}
+    </select>
 </mapper>
