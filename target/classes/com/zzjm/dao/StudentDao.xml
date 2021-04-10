@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzjm.dao.StudentDao">
+<!--
+parameterType:dao接口中方法参数的数据类型
+parameterType他的值是Java数据类型全限定名称获知mybatis定义的别名
+例如：paramateType=“java.lang.Integer”
+       parameterType=“int”
+注意：parameterType不是强制的，mybatis通过反射机制能够发现接口参数的数据类型
+所以可以没有，一般我么也不写。
+-->
+    <select id="selectStudent" parameterType="int" resultType="com.zzjm.domain.Student">
+        select * from Student where id=#{id}
+    </select>
+</mapper>
